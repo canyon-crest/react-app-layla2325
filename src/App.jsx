@@ -5,19 +5,28 @@ import './App.css'
 import Message from './Message'
 import React from 'react'
 import CardComponent from './CardComponent'
+import Nav from './Nav'
+import Footer from './Footer'
+import Home from './Home'
+import About from './About'
+import Contact from './Contact'
 
 function App() {
   const [count, setCount] = useState(0)
   const [message, setMessage] = useState("Welcome!")
 
   const cardsData = [
-    {title: "Card 1", content: "This is the first card." },
-    { title: "Card 2", content: "This is the second card." },
-    { title: "Card 3", content: "This is the third card." }
+    {title: "React", content: "React is a Javascript library used to build user interfaces with components." },
+    { title: "Props", content: "Props allow components to receive data from a parent component." },
+    { title: "UseState", content: "useState lets a component store and update interactive" }
   ];
 
   return (
     <>
+      <Nav />
+      <Home />
+      <About />
+      <Contact />
       <Message text="Hello from React" name="Layla" />
       <div>
         <a href="https://vite.dev" target="_blank">
@@ -48,6 +57,7 @@ function App() {
         <CardComponent key={index} title={card.title} content={card.content} />
         ))}
       </div>
+      <Footer />
     </>
   )
 }
