@@ -1,7 +1,11 @@
-function Nav() {
+function Nav({ setPage }) {
   return (
     <nav>
-      <h2>Home | About | Contact</h2>
+      <ul>
+          <li onClick={() => setPage("home")}>Home</li>
+          <li onClick={() => setPage("about")}>About</li>
+          <li>Contact</li>
+      </ul>
     </nav>
   );
 }

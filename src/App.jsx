@@ -14,6 +14,7 @@ import Contact from './Contact'
 function App() {
   const [count, setCount] = useState(0)
   const [message, setMessage] = useState("Welcome!")
+  const [page, setPage] = useState("about");
 
   const cardsData = [
     {title: "React", content: "React is a Javascript library used to build user interfaces with components." },
@@ -23,7 +24,10 @@ function App() {
 
   return (
     <>
-      <Nav />
+      <Nav setPage={setPage}/>
+      {page === "home" && <Home />}
+      {page === "about" && <About />}
+      {page === "contact" && <Contact />}
       <Home />
       <About />
       <Contact />
