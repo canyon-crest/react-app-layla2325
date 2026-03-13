@@ -1,6 +1,6 @@
 function Nav({ setPage }) {
   return (
-    <nav>
+    <nav className="navbar">
       <ul>
           <li onClick={() => setPage("home")}>Home</li>
           <li onClick={() => setPage("about")}>About</li>
