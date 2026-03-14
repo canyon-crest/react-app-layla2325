@@ -10,6 +10,8 @@ import Footer from './Footer'
 import Home from './Home'
 import About from './About'
 import Contact from './Contact'
+import 'Nav.css'
+import 'index.css'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -66,4 +68,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
