@@ -23,6 +23,28 @@ function App() {
   const [user, setUser] = useState(null);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('')
+  const [dog, setDog] = useState("");
+  const [joke, setJoke] = useState("");
+  const [advice, setAdvice] = useState("");
+  const fetchDog = async () => {
+  const res = await fetch("https://dog.ceo/api/breeds/image/random");
+  const data = await res.json();
+  setDog(data.message);
+};
+const fetchJoke = async () => {
+  const res = await fetch("https://v2.jokeapi.dev/joke/Any?safe-mode");
+  const data = await res.json();
+  if (data.type === "single") {
+    setJoke(data.joke);
+  } else {
+    setJoke(data.setup + " " + data.delivery);
+  }
+};
+const fetchAdvice = async () => {
+  const res = await fetch("https://api.adviceslip.com/advice");
+  const data = await res.json();
+  setAdvice(data.slip.advice);
+};
   
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -116,6 +138,18 @@ useEffect(() => {
       <div>
       <h1>My React + Firestore App</h1>
       <FirestoreExample />
+      </div>
+      <div>
+        <h2>API Section</h2>
+
+        <button onClick={fetchDog}>Get Dog</button>
+        {dog && <img src={dog} width="200" />}
+
+        <button onClick={fetchJoke}>Get Joke</button>
+        <p>{joke}</p>
+
+        <button onClick={fetchAdvice}>Get Advice</button>
+        <p>{advice}</p>
       </div>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
