@@ -139,17 +139,27 @@ useEffect(() => {
       <h1>My React + Firestore App</h1>
       <FirestoreExample />
       </div>
-      <div>
-        <h2>API Section</h2>
-
-        <button onClick={fetchDog}>Get Dog</button>
-        {dog && <img src={dog} width="200" />}
-
-        <button onClick={fetchJoke}>Get Joke</button>
-        <p>{joke}</p>
-
-        <button onClick={fetchAdvice}>Get Advice</button>
-        <p>{advice}</p>
+      <div className="api-container">
+        <div className="api-card">
+          <h2>Dog API</h2>
+          <button onClick={fetchDogImage}>Get Dog</button>
+          {dogImage && <img src={dogImage} alt="dog" />}
+        </div>
+        <div className="api-card">
+          <h2>Joke API</h2>
+          <button onClick={fetchJoke}>Get Joke</button>
+          {joke && (
+            <p>
+              {joke.setup} <br />
+              <strong>{joke.delivery}</strong>
+            </p>
+          )}
+        </div>
+        <div className="api-card">
+          <h2>Advice API</h2>
+          <button onClick={fetchAdvice}>Get Advice</button>
+          {advice && <p>{advice}</p>}
+        </div>
       </div>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
