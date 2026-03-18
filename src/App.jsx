@@ -23,15 +23,19 @@ function App() {
   const [user, setUser] = useState(null);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('')
-  const [dog, setDog] = useState("");
+  const [dogImage, setDogImage] = useState("");
   const [joke, setJoke] = useState("");
   const [advice, setAdvice] = useState("");
   const fetchDog = async () => {
-  const res = await fetch("https://dog.ceo/api/breeds/image/random");
-  const data = await res.json();
-  setDog(data.message);
-};
-const fetchJoke = async () => {
+    try {
+      const res = await fetch("https://dog.ceo/api/breeds/image/random");
+      const data = await res.json();
+      setDogImage(data.message);
+    } catch (error) {
+      console.error("Error fetching dog image:", error);
+    }
+  };
+  const fetchJoke = async () => {
   const res = await fetch("https://v2.jokeapi.dev/joke/Any?safe-mode");
   const data = await res.json();
   if (data.type === "single") {
@@ -39,12 +43,12 @@ const fetchJoke = async () => {
   } else {
     setJoke(data.setup + " " + data.delivery);
   }
-};
-const fetchAdvice = async () => {
+  };
+  const fetchAdvice = async () => {
   const res = await fetch("https://api.adviceslip.com/advice");
   const data = await res.json();
   setAdvice(data.slip.advice);
-};
+  };
   
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
